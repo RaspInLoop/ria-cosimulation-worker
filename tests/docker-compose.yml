@@ -1,0 +1,31 @@
+version: '3'
+services:
+ webserver:
+  image: mayth/simple-upload-server
+  ports: 
+   - 25478:25478 
+  command: app -token f9403fc5f537b4ab332d /var/root
+  volumes:
+   - data-test:/var/root
+ thriftserver:
+  build: ./thrift_server_test
+  image: thrift_server:1.0
+  volumes:
+   - data-test:/var/lib/data-test/
+  environment:
+    - "PYTHONUNBUFFERED=1"  
+ message-broker:
+  image: redis
+  ports: 
+   - 6379:6379 
+ co-simulator-worker:
+  image: cosimulator
+  build: ../
+  depends_on:
+   - "message-broker"  
+  environment:
+   - "REDIS_HOST=message-broker"
+   - "REDIS_PORT=6379"
+   - "PYTHONUNBUFFERED=1" 
+volumes:
+ data-test:

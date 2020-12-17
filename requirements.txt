@@ -1,0 +1,6 @@
+fmpy >=0.2.16
+lxml
+numpy
+requests
+matplotlib
+redis>=3.0

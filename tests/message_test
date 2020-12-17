@@ -1,0 +1,16 @@
+{
+    "id": "fc6cdffc-e1a6-4949-a485-9cd1320ebcb2",
+    "ssp_uri": "http://webserver/test.ssp",
+    "stop-time": 10,
+    "step-size": 1,
+    "fmu-environment": {
+        "instruments": {
+              "host": "thriftserver",
+              "port": 8100
+         },
+        "outputs": {
+               "host": "thriftserver",
+               "port": 8100
+        }
+    }        
+}
